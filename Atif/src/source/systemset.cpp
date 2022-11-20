@@ -900,7 +900,7 @@ namespace systemset
         mark[10] = "ITERATIVE:";
         mark[11] = "FILEPATH:";
         
-        
+        cout<<"Please type in the path and name of the input file, e.g., ~/input/input.dat"<<endl;
         scanf("%s",fileName);
         inFile.open(fileName,ios_base::in);
         //inFile.open("input.dat",ios_base::in);

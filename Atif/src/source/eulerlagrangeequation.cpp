@@ -1533,9 +1533,9 @@ void EulerLagrange(double sigma,double f,double eta_t,double& deltaPhi,double er
     {
         if(f != 0.0) ImageChargePotential(f,Z,rho,u_im);
         //mean electric potential from Poisson equation
-        if(ngrid_b < ngrid_m) PoissonEquationSingle(Z,rho,Psi);
-        if(ngrid_b== ngrid_m)
-        {
+        //if(ngrid_b < ngrid_m) PoissonEquationSingle(Z,rho,Psi);
+        //if(ngrid_b== ngrid_m)
+        //{
             PoissonEquationTwo(Z,rho,Psi);
             
             deltaPhi += (log(C_psi)/ZMax);
@@ -1544,7 +1544,7 @@ void EulerLagrange(double sigma,double f,double eta_t,double& deltaPhi,double er
                 Psi[k] = Psi[k] - deltaPhi;
                 Psi[ngrid-k] = Psi[k];
             }
-        }
+        //}
     }
     
     
@@ -2838,8 +2838,10 @@ void EulerLagrange(double sigma,double f,double eta_t,double& deltaPhi,double er
 
     if(neutsys == 1)
     {
-       if(ngrid_b < ngrid_m) RenormDensity_Newton(sigma,deltaPhi,err,rhoBM1,rhoBM2,D,MB1,MB2,Z,ff1,ff2,rho1,BesselZero,MODEL);
-       if(ngrid_b== ngrid_m) RenormDensity_Newton(sigma,err,rhoBM1,rhoBM2,Z,rho1);
+       Renorm_Newton_Downhill(sigma,err,rhoBM1,rhoBM2,Z,rho1);
+       //if(ngrid_b < ngrid_m) RenormDensity_Newton(sigma,deltaPhi,err,rhoBM1,rhoBM2,D,MB1,MB2,Z,ff1,ff2,rho1,BesselZero,MODEL);
+       //if(ngrid_b== ngrid_m) Renorm_Newton_Downhill(sigma,err,rhoBM1,rhoBM2,Z,rho1);
+       //if(ngrid_b== ngrid_m) RenormDensity_Newton(sigma,err,rhoBM1,rhoBM2,Z,rho1);
     }
     
     

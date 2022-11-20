@@ -6,7 +6,7 @@ CPP_FILES=$(wildcard ${DIR_SRC}/*.cpp)
 SRC=$(CPP_FILES)
 OBJ=$(SRC:.cpp=.o)
 
-TARGET=ATIFexe
+TARGET=AtifExe
 
 defaut: $(TARGET)
 	-rm $(OBJ)

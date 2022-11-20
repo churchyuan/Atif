@@ -10,4 +10,6 @@ void RenormDensity_Newton(double sigma,double& deltaPhi,double err,double rhoBM1
                           double*** BesselZero,string* MODEL);
 void RenormDensity_Newton(double sigma,double err,double rhoBM1,double rhoBM2,float* Z,
                           double** rho1);
+void Renorm_Newton_Downhill(double sigma,double err,double rhoBM1,double rhoBM2,float* Z,
+                            double** rho1);
 #endif//RENORMALIZATION_H_

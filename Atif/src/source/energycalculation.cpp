@@ -24,6 +24,7 @@ extern int DMAX;
 extern short  nspecies;
 extern short neutsys;
 
+
 void EnergyCalculation(double sigma,double gammab,double f,int* LLI,int* ULI,float* D,float* Z,double* rhoB,
                        double* BB,double** pairEner,double** ATT,double** rho,double* Psi,double*** Psi_IJ,
                        double& Ener_tot)
@@ -240,7 +241,7 @@ void EnergyCalculation(double sigma,double f,double eta,int* LLI,int* ULI,float*
     VV = 6.0/(D[hspecies]*D[hspecies]*D[hspecies]*Pi);
     for(int k=0; k<=ngrid_m; ++k)
     {
-        lambda[k] = log(rho[hspecies][k])*VV;
+        if(rho[hspecies][k] > 1.0E-10) lambda[k] = log(rho[hspecies][k])*VV;
         lambda[ngrid-k] = lambda[k];
         f_im[ngrid-k]   = f_im[k];
         

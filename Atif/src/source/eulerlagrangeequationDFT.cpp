@@ -1546,12 +1546,12 @@ void EulerLagrangeDFT(double gama,double sigma,double f,double eta_t,double& del
     if(neutsys == 1)
     {
         if(f != 0.0) ImageChargePotential(f,Z,rho,u_im);
+        
         //mean electric potential from Poisson equation
         if(ngrid_b < ngrid_m) PoissonEquationSingle(Z,rho,Psi);
-        if(ngrid_b== ngrid_m)
+        if(ngrid_b == ngrid_m)
         {
             PoissonEquationTwo(Z,rho,Psi);
-            
             deltaPhi += (log(C_psi)/ZMax);
             for(int k=0; k<=ngrid_b; ++k)
             {
@@ -1573,6 +1573,7 @@ void EulerLagrangeDFT(double gama,double sigma,double f,double eta_t,double& del
     //hard sphere + hard sphere chain
     DerivHardSphereChain(MAXR1,LLI,ULI,rhoB,D,Z,ATT,rho,DCH);
     //loop-1
+    
     for(int k=LLIM; k<=ngrid_m; ++k)
     {
         for(short j=nblocks; j<hspecies; ++j)
@@ -1595,7 +1596,6 @@ void EulerLagrangeDFT(double gama,double sigma,double f,double eta_t,double& del
                 rho1[j][k] = 0;
             }
             rho1[j][ngrid-k] = rho1[j][k];
-            
         }
         
         
@@ -1659,6 +1659,7 @@ void EulerLagrangeDFT(double gama,double sigma,double f,double eta_t,double& del
         
     }
     //loop-1
+    //exit(0);
     
     //ithresh = 0;
     //loop-2
@@ -2820,8 +2821,10 @@ void EulerLagrangeDFT(double gama,double sigma,double f,double eta_t,double& del
     ////////////////////////////////////////////////////////////////////////////////////////
     if(neutsys == 1)
     {
-       if(ngrid_b <ngrid_m) RenormDensity_Newton(sigma,deltaPhi,err,rhoBM1,rhoBM2,D,MB1,MB2,Z,ff1,ff2,rho1,BesselZero,MODEL);
-       if(ngrid_b==ngrid_m) RenormDensity_Newton(sigma,err,rhoBM1,rhoBM2,Z,rho1);
+       Renorm_Newton_Downhill(sigma,err,rhoBM1,rhoBM2,Z,rho1);
+       //if(ngrid_b <ngrid_m) RenormDensity_Newton(sigma,deltaPhi,err,rhoBM1,rhoBM2,D,MB1,MB2,Z,ff1,ff2,rho1,BesselZero,MODEL);
+       //if(ngrid_b==ngrid_m) Renorm_Newton_Downhill(sigma,err,rhoBM1,rhoBM2,Z,rho1);
+       //if(ngrid_b==ngrid_m) RenormDensity_Newton(sigma,err,rhoBM1,rhoBM2,Z,rho1);
     }
     
     VolumeFractionDFT(eta_t,D,LLI,ULI,etar,rho1);
